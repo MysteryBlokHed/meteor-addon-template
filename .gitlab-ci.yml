@@ -3,10 +3,20 @@ image: eclipse-temurin:17.0.5_8-jdk
 stages:
   - build
 
+.changes: &changes
+  - gradle/**/*
+  - src/**/*
+  - build.gradle
+  - gradle.properties
+  - gradlew
+  - settings.gradle
+  - .gitlab-ci.yml
+
 build:
   stage: build
   script:
     - ./gradlew build
+  rules: [changes: *changes]
   artifacts:
     expire_in: 30 days
     paths: ['./build/libs']
