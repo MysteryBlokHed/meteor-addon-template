@@ -1,0 +1,12 @@
+image: eclipse-temurin:17.0.5_8-jdk
+
+stages:
+  - build
+
+build:
+  stage: build
+  script:
+    - ./gradlew build
+  artifacts:
+    expire_in: 30 days
+    paths: ['./build/libs']
